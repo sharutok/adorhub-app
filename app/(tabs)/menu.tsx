@@ -1,13 +1,12 @@
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import Modules from '@/screens/modules/Modules';
+import EditScreenInfo from '@/components/EditScreenInfo';
 
 export default function TabTwoScreen() {
     return (
         <View style={styles.container}>
-            {/* <EditScreenInfo path="app/(tabs)/two.tsx" /> */}
+            {/* <EditScreenInfo  path="app/(tabs)/two.tsx" /> */}
             <Modules />
         </View>
     );

@@ -16,11 +16,12 @@ import { router } from 'expo-router';
 
 
 const signInSchema = z.object({
-  // email: z.string().min(1, 'Required').email(),
+  // email: z.string().min(1, 'Required!').email(),
   // password: z
-  //   .string().min(4, 'Required'),
+  //   .string().min(4, 'Required!'),
 });
 
+// type CustomTextFieldProps = { control:any, errors:string, name:string, label:string, secureTextEntry:boolean }
 type SignInSchemaType = z.infer<typeof signInSchema>;
 
 function HomeScreen() {
@@ -33,13 +34,14 @@ function HomeScreen() {
   } = useForm<SignInSchemaType>({
     resolver: zodResolver(signInSchema),
   });
+  
   const [submittedData, setSubmittedData] = useState(null);
 
   const onSubmit = (data: React.SetStateAction<null>) => {
     try{
       console.log("Submitted Data:", data);
       setSubmittedData(data);
-      router.navigate('/(tabs)');
+      router.navigate('/(tabs)/home');
 
 
     }catch(error){
@@ -71,7 +73,7 @@ function HomeScreen() {
           control={control}
           errors={errors}
           name={"email"}
-          label={"Email ID"}
+          label={"Email Address"}
           secureTextEntry={false}
         />
         <View>
@@ -207,8 +209,8 @@ const CustomTextField = ({ control, errors, name, label, secureTextEntry }) => {
 };
 const CustomTextFieldForPassword = ({ control, errors, name, label, secureTextEntry, hidePassword, setHidePassword }) => {
   return (
-    <View >
-    <View>
+    <View style={{ flexDirection: 'row', alignItems:'center',}} >
+      <View style={{ ...styles.input, color: "black" }}>
        <Controller
             name={name}
             defaultValue=""
@@ -225,7 +227,7 @@ const CustomTextFieldForPassword = ({ control, errors, name, label, secureTextEn
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                   style={{ ...styles.input, color: "black" }}
+                   
                   placeholder={label}
                   value={value}
                   onChangeText={onChange}
@@ -239,7 +241,7 @@ const CustomTextFieldForPassword = ({ control, errors, name, label, secureTextEn
         <Text style={styles?.errorText}>{errors[name]?.message}</Text>
       )}
         </View>
-      <TouchableOpacity style={{ position:'absolute',alignItems:'flex-end',right:0,padding:10 }} onPress={() => setHidePassword(!hidePassword)}>
+      <TouchableOpacity style={{ position:'absolute',alignItems:'flex-end',right:0,marginRight:5,backfaceVisibility:'white' }} onPress={() => setHidePassword(!hidePassword)}>
         <Icon
           name={hidePassword ? 'eye-off-outline' : 'eye-outline'}
           size={25}

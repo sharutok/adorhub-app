@@ -5,21 +5,10 @@ import { Pressable } from "react-native";
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-export default function ButtonNav({ name, path, icon_name,onPress }) {
+export default function ButtonNav({ name,icon_name,onPress }) {
 
     const [submittedData, setSubmittedData] = useState(null);
 
-    const onSubmit = (data: React.SetStateAction<null>) => {
-        try {
-            console.log("Submitted Data:", data);
-            setSubmittedData(data);
-            path &&router.navigate(path);
-            
-            
-        } catch (error) {
-            console.log(error)
-        }
-    };
      return (
          <Pressable
              style={{...styles.submit_btn,alignItems:'center',flexDirection:'row',justifyContent:'center',gap:10}}
@@ -31,7 +20,6 @@ export default function ButtonNav({ name, path, icon_name,onPress }) {
              />
              <Text
                  style={{
-                     //   color: "#64748B",
                      color: "white",
                      fontWeight: "700",
                      textAlign: "center",

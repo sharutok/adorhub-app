@@ -15,13 +15,14 @@ export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
-import ActionableTicketList from '../app/ticket-system/actionable-ticket-list'; 
 const queryClient = new QueryClient({});
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  // initialRouteName: '(tabs)',
   // initialRouteName: "login",
+  // initialRouteName: "home",
+  initialRouteName: "/conference-booking/create-conference",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -29,12 +30,22 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-    BrandonGrotesqueLight: require("../assets/fonts/BrandonGrotesque-Light.ttf"),
-    BrandonGrotesqueRegular: require("../assets/fonts/BrandonGrotesque-Regular.ttf"),
-    SourceSansProExtraLight: require("../assets/fonts/SourceSansPro-ExtraLight.ttf"),
-    SourceSansProRegular: require("../assets/fonts/SourceSansPro-Regular.ttf"),
-    ArchiveRegular: require("../assets/fonts/Archive-Regular.ttf"),
+SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+BrandonGrotesqueLight: require("../assets/fonts/BrandonGrotesque-Light.ttf"),
+BrandonGrotesqueRegular: require("../assets/fonts/BrandonGrotesque-Regular.ttf"),
+SourceSansProExtraLight: require("../assets/fonts/SourceSansPro-ExtraLight.ttf"),
+SourceSansProRegular: require("../assets/fonts/SourceSansPro-Regular.ttf"),
+ArchiveRegular: require("../assets/fonts/Archive-Regular.ttf"),
+SourceSansProBlack:require('../assets/fonts/SourceSansPro-Black.ttf'),
+SourceSansProBlackItalic:require('../assets/fonts/SourceSansPro-BlackItalic.ttf'),
+SourceSansProBold:require('../assets/fonts/SourceSansPro-Bold.ttf'),
+SourceSansProBoldItalic:require('../assets/fonts/SourceSansPro-BoldItalic.ttf'),
+SourceSansProExtraLightItalic:require('../assets/fonts/SourceSansPro-ExtraLightItalic.ttf'),
+SourceSansProItalic:require('../assets/fonts/SourceSansPro-Italic.ttf'),
+SourceSansProLight:require('../assets/fonts/SourceSansPro-Light.ttf'),
+SourceSansProLightItalic:require('../assets/fonts/SourceSansPro-LightItalic.ttf'),
+SourceSansProSemiBold:require('../assets/fonts/SourceSansPro-SemiBold.ttf'),
+SourceSansProSemiBoldItalic:require('../assets/fonts/SourceSansPro-SemiBoldItalic.ttf'),
     ...FontAwesome.font,
   });
 
@@ -66,11 +77,65 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        {/* <Stack.Screen name="ticket-system/actionable-ticket-list" options={{headerShown:false}}/> */}
-        {/* <Stack.Screen name="ticket-system/create-ticket" options={{headerShown:false}}/> */}
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          
+          <Stack.Screen name="ticket-system/actionable-ticket-list"
+            options={{
+              headerShown: true, title: 'TICKET LISTING', headerBackTitle: "Back", headerTitleAlign: 'center', headerTitleStyle: {
+                fontFamily: 'SourceSansProSemiBold', fontWeight: '600', color: '#626262',
+              }
+            }}
+          />
+          <Stack.Screen name="ticket-system/create-ticket"
+            options={{
+            headerShown: true, title: 'RAISE TICKET', headerBackTitle: "Back", headerTitleAlign: 'center', headerTitleStyle: {
+                fontFamily: 'SourceSansProSemiBold', fontWeight: '600', color: '#626262'
+              }
+            }}
+          />
+          <Stack.Screen name="conference-booking/conference-list"
+            options={{
+            headerShown: true, title: 'CONFERENCE LIST', headerBackTitle: "Back", headerTitleAlign: 'center', headerTitleStyle: {
+                fontFamily: 'SourceSansProSemiBold', fontWeight: '600', color: '#626262'
+              }
+            }}
+          />
+          <Stack.Screen name="conference-booking/create-conference"
+            options={{
+            headerShown: true, title: 'CONFERENCE BOOKING', headerBackTitle: "Back", headerTitleAlign: 'center', headerTitleStyle: {
+                fontFamily: 'SourceSansProSemiBold', fontWeight: '600', color: '#626262'
+              }
+            }}
+          />
+          <Stack.Screen name="conference-booking/conference-form"
+            options={{
+              presentation:'modal'
+              // headerShown: true,
+              // title: 'CONFERENCE BOOKING',
+              // headerBackTitle: "Back",
+              // headerTitleAlign: 'center',
+              // headerTitleStyle: {
+              //   fontFamily: 'SourceSansProSemiBold',
+              //   fontWeight: '600',
+              //   color: '#626262'
+              // }
+            }}
+          />
       </Stack>
     </ThemeProvider>
     </QueryClientProvider>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

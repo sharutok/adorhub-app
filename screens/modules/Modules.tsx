@@ -4,10 +4,10 @@ import IconFA from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useState } from 'react'
 import { router } from 'expo-router';
 const DATA = [
-    {label: 'Ticketing System', icon: 'clipboard-check'},
-    { label: 'Conference Booking', icon:'users-line'},
-    {label: 'Visitor Management', icon: 'id-badge'},
-    { label: 'Capex', icon:'file-invoice-dollar'},
+    {path:"/ticket-system/actionable-ticket-list",label: 'Ticketing System', icon: 'clipboard-check'},
+    { path:"/conference-booking/conference-list", label: 'Conference Booking', icon:'users-line'},
+    {path:"",label: 'Visitor Management', icon: 'id-badge'},
+    {path:"", label: 'Capex', icon:'file-invoice-dollar'},
 ];
 
 type ItemProps = { title: string };
@@ -18,7 +18,7 @@ const Item = ({ item }: ItemProps) => {
         <Pressable style={{ flexDirection: 'row',marginTop:15, alignItems: 'center', backgroundColor: pressed ? "#F1F5F9" : 'white',paddingVertical:20,borderRadius:10,marginHorizontal:20 }}
         onPressIn={() => {
             setPressed(true)
-            router.navigate('/ticket-system/actionable-ticket-list');
+            router.push(item.path);
                 console.log(item.label);
             }}
             onPressOut={() => {
@@ -55,10 +55,11 @@ const Item = ({ item }: ItemProps) => {
                  showsVerticalScrollIndicator={false}
             />
             <View style={{width:'100%',justifyContent:'flex-end',flexDirection:'row'}}>
-            <Pressable onPressOut={() => {
+                <Pressable
+                    onPressOut={() => {
                 setPressed(false)
             }}
-                onPressIn={() => {
+            onPressIn={() => {
                     setPressed(true)
 
                 }} style={{ flexDirection: 'row', gap:10, alignItems: 'center', backgroundColor: pressed ? "#F1F5F9" : 'white', margin:'5%', padding:20,borderRadius:10}}>

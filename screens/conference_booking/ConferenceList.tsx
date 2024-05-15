@@ -10,30 +10,30 @@ import ButtonNav from '@/components/Reusable/ButtonNav';
 import { router } from 'expo-router';
 import { Platform } from "react-native";
 import axios from 'axios';
-export default function ActionableTicketList() {
+import moment from "moment";
 
-
-
+export default function ConferenceList() {
     const response = useQuery({
-        queryKey: ['ticket-listing'],
+        queryKey: ['conference-listing'],
         queryFn: async () => {
-            const data = await axios.get(`${api.ticket_system.view_all_data}/?page=${1}&search=${""}&woosee=${15681}&viewonly=${true}`);
-            return data?.data
+            const data =  axios.get(`${api.conference_booking.get_data}/?page=${1}&search=${""}&date=${false}&woosee=${15681}`)
+            return data
         }
     })
-    
+
     return (
         <View style={{
-            ...styles.container,  }}>
-            <View style={{ marginVertical: 10}}>
+            ...styles.container,
+        }}>
+            <View style={{ marginVertical: 10 }}>
                 <Search />
             </View>
-            <CardViewList DATA={response?.data?.results} Item={Item}  />
-            <View style={{ position: 'absolute', bottom: 0, width: '100%',...styles.shadowStyle, }}>
-                <View style={{paddingVertical:20,marginHorizontal:20}}>
-                    <ButtonNav name={"Create Ticket"} icon_name={'newspaper'} onPress={()=>router.navigate('/ticket-system/create-ticket')} />
+            <CardViewList DATA={response?.data?.data?.results} Item={Item} />
+            <View style={{ position: 'absolute', bottom: 0, width: '100%', ...styles.shadowStyle, }}>
+                <View style={{ paddingVertical: 20, marginHorizontal: 20 }}>
+                    <ButtonNav name={"Book Conference"} icon_name={'newspaper'} onPress={() => router.navigate('/conference-booking/create-conference')} />
                 </View>
-                </View>
+            </View>
         </View>
     );
 }
@@ -61,48 +61,28 @@ const Item = ({ item }: any) => {
                 }}
             >
                 <View style={{ flexDirection: 'column', paddingHorizontal: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-                        <Text style={{ ...styles.card_title, }}>
-                            {item.ticket_no}
-                        </Text>
-                        <Text style={{ ...styles.card_title, }}>{item.created_at}</Text>
-                    </View>
-                    <Text style={{ ...styles.card_title, }}>{item.tkt_type}</Text>
-                    <Text style={{ ...styles.card_title, }}>{item.requester_emp_name}</Text>
-                    <Text style={{ ...styles.card_title, }}>{status(item.tkt_status)}</Text>
-                    <Text style={{ ...styles.card_title, }}>{item.tkt_current_at}</Text>
+                    <Text style={{ ...styles.card_title, }}>{item.meeting_about}</Text>
+                   <Text> {moment(item.conf_end_date).format("DD MMM YYYY")}</Text>
+                   <Text> {moment(item.disp_conf_end_date).format("DD MMM YYYY")}</Text>
+                   <Text> {moment(item.conf_start_time, "HH:mm").format("hh:mm A")}</Text>
+                   <Text> {moment(item.conf_end_time, "HH:mm").format("hh:mm A")}</Text>
+                    <Text style={{ ...styles.card_title, }}>{item.conf_room}</Text>
+                    <Text style={{ ...styles.card_title, }}>{item.first_name}{" "}{item.last_name}</Text>
                 </View>
             </Pressable>
         </View>
     )
 }
 
-function status(val) {
-    if (val === "INPROGRESS") {
-        return (<Text style={{ fontWeight: '700', color: 'rgb(234 179 8)' }}>{val}</Text>)
-    }
-    if (val === "APPROVED") {
-        return (<Text style={{ fontWeight: '700', color: 'rgb(34 197 94)' }}>{val}</Text>)
-    }
-    if (val === "CLOSED") {
-        return (<Text style={{ fontWeight: '700', color: 'rgb(59 130 246)' }}>{val}</Text>)
-    }
-    if (val === "REJECTED") {
-        return (<Text style={{ fontWeight: '700', color: 'rgb(239 68 68)' }}>{val}</Text>)
-    }
-    else {
-        return "-"
-    }
-}
 
 const styles = StyleSheet.create({
     card_title: {
         fontSize: 15,
     },
-    searchShadowStyle : {
+    searchShadowStyle: {
         shadowColor: 'rgba(50,50,93,0.25)',
         shadowOffset: {
-            width: 0, 
+            width: 0,
             height: 2,
         },
         shadowOpacity: 1,
@@ -112,7 +92,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         width: '100%',
-        height:'100%',
+        height: '100%',
         // flex: 1,
     },
     title: {
@@ -124,7 +104,7 @@ const styles = StyleSheet.create({
         height: 1,
         width: '80%',
     },
-    shadowStyle :{
+    shadowStyle: {
         shadowColor: 'rgba(50,50,93,0.25)', // Shadow color
         shadowOffset: {
             width: 0,  // Horizontal offset
@@ -150,5 +130,5 @@ const styles = StyleSheet.create({
                 elevation: 2,
             },
         })
-    }       
+    }
 });
