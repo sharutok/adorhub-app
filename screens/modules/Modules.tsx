@@ -19,12 +19,9 @@ const Item = ({ item }: ItemProps) => {
         onPressIn={() => {
             setPressed(true)
             router.push(item.path);
-                console.log(item.label);
             }}
             onPressOut={() => {
                 setPressed(false)
-                console.log(item.label);
-                
             }}
         >
         <View style={{width:'20%',justifyContent:'center',flexDirection:'row',}}>

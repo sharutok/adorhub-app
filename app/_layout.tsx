@@ -22,7 +22,7 @@ export const unstable_settings = {
   // initialRouteName: '(tabs)',
   // initialRouteName: "login",
   // initialRouteName: "home",
-  initialRouteName: "/conference-booking/create-conference",
+  // initialRouteName: "/conference-booking/create-conference",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -49,7 +49,6 @@ SourceSansProSemiBoldItalic:require('../assets/fonts/SourceSansPro-SemiBoldItali
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -71,13 +70,12 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    // <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
     <QueryClientProvider client={queryClient}>
     <ThemeProvider value={DefaultTheme}>
       <Stack>
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal',gestureEnabled:true }} />
           
           <Stack.Screen name="ticket-system/actionable-ticket-list"
             options={{

@@ -4,11 +4,9 @@ import { Controller, useForm } from "react-hook-form";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { z } from "zod";
 import * as DocumentPicker from 'expo-document-picker';
-import * as FileSystem from 'expo-file-system';
 import { Alert } from "react-native";
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import LoadingScreen from "@/helper/LoadingScreen";
 import LoadingButton from "@/helper/LoadingButton";
 import { useState } from "react";   
 const signInSchema = z.object({

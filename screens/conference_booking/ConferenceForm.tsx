@@ -1,8 +1,11 @@
+import { View, Text } from 'react-native'
 import React from 'react'
 
-function ConferenceForm() {
+const ConferenceForm = () => {
   return (
-    <div>ConferenceForm</div>
+    <View>
+      <Text>ConferenceForm</Text>
+    </View>
   )
 }
 
