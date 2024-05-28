@@ -5,8 +5,8 @@ import Icon  from "react-native-vector-icons/FontAwesome5";
 export default function Search() {
     return (
         <View style={{ ...styles.input, color: "black", marginHorizontal: '5%', backgroundColor:'#F2F2F2' }}>
-        <View style={{flexDirection:'row',alignItems:'center',gap:5}}>
-                <Icon style={{ color:'#ED1C24'}}
+        <View style={{flexDirection:'row',alignItems:'center',gap:10}}>
+                <Icon style={{ color:'black'}}
                 name={'search'}
                 size={15}
                 color="grey"

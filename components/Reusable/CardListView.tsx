@@ -14,11 +14,6 @@ export default function CardViewList({DATA,Item}) {
 )
 }
 
-
-
-
-
-
 const styles = StyleSheet.create({
     container: {
         width: '100%'

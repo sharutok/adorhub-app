@@ -113,12 +113,19 @@ function RootLayoutNav() {
               // headerBackTitle: "Back",
               // headerTitleAlign: 'center',
               // headerTitleStyle: {
-              //   fontFamily: 'SourceSansProSemiBold',
-              //   fontWeight: '600',
+                //   fontFamily: 'SourceSansProSemiBold',
+                //   fontWeight: '600',
               //   color: '#626262'
               // }
             }}
           />
+          <Stack.Screen name="visitor-management/visitor-list"
+              options={{
+              headerShown: true, title: 'VISITOR LISTING', headerBackTitle: "Back", headerTitleAlign: 'center', headerTitleStyle: {
+                  fontFamily: 'SourceSansProSemiBold', fontWeight: '600', color: '#626262'
+                }
+              }}
+            />
       </Stack>
     </ThemeProvider>
     </QueryClientProvider>

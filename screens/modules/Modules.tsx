@@ -6,7 +6,7 @@ import { router } from 'expo-router';
 const DATA = [
     {path:"/ticket-system/actionable-ticket-list",label: 'Ticketing System', icon: 'clipboard-check'},
     { path:"/conference-booking/conference-list", label: 'Conference Booking', icon:'users-line'},
-    {path:"",label: 'Visitor Management', icon: 'id-badge'},
+    {path:"/visitor-management/visitor-list",label: 'Visitor Management', icon: 'id-badge'},
     {path:"", label: 'Capex', icon:'file-invoice-dollar'},
 ];
 
